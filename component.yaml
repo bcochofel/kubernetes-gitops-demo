@@ -1,8 +1,15 @@
 name: kubernetes-gitops-demo
+type: component
 subcomponents:
 - name: nginx
   type: helm
   source: https://github.com/bitnami/charts
   method: git
   path: bitnami/nginx
+  branch: master
+- name: prometheus-operator
+  type: helm
+  source: https://github.com/helm/charts
+  method: git
+  path: stable/prometheus-operator
   branch: master
