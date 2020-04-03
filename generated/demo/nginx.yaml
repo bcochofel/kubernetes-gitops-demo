@@ -1,0 +1,114 @@
+---
+---
+# Source: nginx/templates/svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    app.kubernetes.io/name: nginx
+    helm.sh/chart: nginx-5.1.12
+    app.kubernetes.io/instance: nginx
+    app.kubernetes.io/managed-by: Tiller
+  annotations:
+    prometheus.io/port: '9113'
+    prometheus.io/scrape: "true"
+    
+spec:
+  type: LoadBalancer
+  externalTrafficPolicy: "Cluster"
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+    - name: https
+      port: 443
+      targetPort: https
+    - name: metrics
+      port: 9113
+      targetPort: metrics
+  selector:
+    app.kubernetes.io/name: nginx
+    app.kubernetes.io/instance: nginx
+
+---
+
+# Source: nginx/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app.kubernetes.io/name: nginx
+    helm.sh/chart: nginx-5.1.12
+    app.kubernetes.io/instance: nginx
+    app.kubernetes.io/managed-by: Tiller
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: nginx
+      app.kubernetes.io/instance: nginx
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: nginx
+        helm.sh/chart: nginx-5.1.12
+        app.kubernetes.io/instance: nginx
+        app.kubernetes.io/managed-by: Tiller
+      annotations:
+        prometheus.io/port: "9113"
+        prometheus.io/scrape: "true"
+        
+    spec:      
+      containers:
+        - name: nginx
+          image: docker.io/bitnami/nginx:1.16.1-debian-10-r63
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - name: http
+              containerPort: 8080
+          livenessProbe:
+            failureThreshold: 6
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 30
+            timeoutSeconds: 5
+            
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 3
+            
+          resources:
+            limits: {}
+            requests: {}
+            
+        - name: metrics
+          image: docker.io/bitnami/nginx-exporter:0.6.0-debian-10-r36
+          imagePullPolicy: "IfNotPresent"
+          command: ['/usr/bin/exporter', '-nginx.scrape-uri', 'http://127.0.0.1:8080/status']
+          ports:
+            - name: metrics
+              containerPort: 9113
+          livenessProbe:
+            httpGet:
+              path: /metrics
+              port: metrics
+            initialDelaySeconds: 15
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /metrics
+              port: metrics
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+          resources:
+            limits: {}
+            requests: {}
+            
+
