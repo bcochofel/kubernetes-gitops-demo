@@ -49855,13 +49855,6 @@ spec:
   serviceMonitorSelector:
     matchLabels:
       release: prometheus-operator
-  thanos:
-    baseImage: quay.io/thanos/thanos
-    listenLocal: false
-    objectStorageConfig:
-      key: object-store.yaml
-      name: thanos-objstore-config
-    version: v0.11.0
   version: v2.17.0
 
 ---

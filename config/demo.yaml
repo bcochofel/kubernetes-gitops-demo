@@ -93,14 +93,14 @@ subcomponents:
           ## Thanos configuration
           ## ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#thanosspec
           ##
-          thanos:
-            baseImage: quay.io/thanos/thanos
-            version: v0.11.0
-            ## listenLocal should be true if using istio
-            listenLocal: false
-            objectStorageConfig:
-              key: object-store.yaml
-              name: thanos-objstore-config
+          thanos: {}
+            # baseImage: quay.io/thanos/thanos
+            # version: v0.11.0
+            # ## listenLocal should be true if using istio
+            # listenLocal: false
+            # objectStorageConfig:
+            #   key: object-store.yaml
+            #   name: thanos-objstore-config
       ## Component scraping etcd
       ##
       kubeEtcd:
