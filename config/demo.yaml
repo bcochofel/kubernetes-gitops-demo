@@ -1,0 +1,4 @@
+subcomponents:
+  prometheus-operator:
+    config:
+      fullnameOverride: prometheus-k8s

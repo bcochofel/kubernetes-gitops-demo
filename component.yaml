@@ -1,0 +1,8 @@
+name: kubernetes-gitops-demo
+subcomponents:
+- name: prometheus-operator
+  type: helm
+  source: https://github.com/helm/charts
+  method: git
+  path: stable/prometheus-operator
+  branch: master
