@@ -1,6 +1,8 @@
 ---
 subcomponents:
   prometheus-operator:
+    namespace: monitoring
+    injectNamespace: true
     config:
       ## Provide a name to substitute for the full names of resources
       ##
