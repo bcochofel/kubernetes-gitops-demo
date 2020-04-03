@@ -50,3 +50,4 @@ This will become the folder that ```flux``` checks for new/update manifests.
 - [GitOps](https://www.weave.works/blog/gitops-operations-by-pull-request)
 - [Flux](https://github.com/fluxcd/flux)
 - [Fabrikate](https://github.com/microsoft/fabrikate)
+- [Prometheus Operator](https://github.com/coreos/prometheus-operator)
