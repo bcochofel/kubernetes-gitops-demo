@@ -2,10 +2,14 @@
 
 GitOps demo with Flux and Fabrikate
 
+You can use this [repo](https://github.com/bcochofel/vagrant-kubernetes-cluster)
+to create your kubernetes cluster.
+
 # Prerequisites
 
 You'll need the following binaries on your path:
 
+- kubernetes cluster
 - helm
 - fab
 - fluxctl
