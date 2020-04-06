@@ -14,9 +14,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: copy manifests
         run: |
-          ls -al
           cp $SOURCE_DIR $DEST_DIR
           ls -la $DEST_DIR
         env:
-          SOURCE_DIR: ./generated
+          SOURCE_DIR: ./generated/demo
           DEST_DIR: ./manifests
