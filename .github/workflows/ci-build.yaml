@@ -10,6 +10,8 @@ jobs:
     name: copy manifests
     runs-on: ubuntu-latest
     steps:
+      # This step checks out a copy of your repository.
+      - uses: actions/checkout@v2
       - name: copy manifests
         run: |
           pwd
