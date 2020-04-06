@@ -14,6 +14,7 @@ jobs:
         run: |
           pwd
           ls -al
+          ls -al ../
         env:
           SOURCE_DIR: ./generated
           DEST_DIR: ./manifests
