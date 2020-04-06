@@ -10,14 +10,16 @@ jobs:
         run: |
           wget -q https://github.com/microsoft/fabrikate/releases/download/${FAB_VER}/fab-v${FAB_VER}-linux-amd64.zip
           unzip fab-v${FAB_VER}-linux-amd64.zip
-          ./fab version
+          cp fab ~/bin
+          fab version
         env:
           FAB_VER: "0.17.3"
       - name: download helm 2.x binary
         run: |
           curl -sO https://get.helm.sh/helm-v${HELM_VER}-linux-amd64.tar.gz
           tar xzvf helm-v${HELM_VER}-linux-amd64.tar.gz
-          ./helm version
+          cp linux-amd64/helm ~/bin
+          helm version
         env:
           HELM_VER: "2.16.3"
 
