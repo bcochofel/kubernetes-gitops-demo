@@ -12,7 +12,8 @@ jobs:
     steps:
       - name: copy manifests
         run: |
-          cp $SOURCE_DIR $DEST_DIR
+          pwd
+          ls -al
         env:
           SOURCE_DIR: ./generated
           DEST_DIR: ./manifests
