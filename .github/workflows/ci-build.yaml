@@ -1,0 +1,12 @@
+name: build with fabrikate
+on: [push]
+
+jobs:
+  build:
+    name: build manifests
+    runs-on: ubuntu-latest
+    steps:
+      - name: download and install fab binary
+        run: |
+          echo "test #1"
+          echo "test #2"
