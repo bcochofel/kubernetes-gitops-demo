@@ -10,9 +10,11 @@ to create your kubernetes cluster.
 You'll need the following binaries on your path:
 
 - kubernetes cluster
-- helm
+- helm (v2.x)
 - fab
 - fluxctl
+
+**NOTE** Currently fabrikate does not support Helm 3. Please use helm 2.16.3 (stable) instead when running fabrikate.
 
 # Add subcomponents
 
